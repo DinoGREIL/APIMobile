@@ -2,6 +2,7 @@
     "name": "example-app",
     "description": "a really cool app",
     "version": "1.0.0",
+    "main": "index.js",
     "engines": {
       "node": "16.15.1"
     },
