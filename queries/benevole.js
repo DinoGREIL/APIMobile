@@ -17,13 +17,13 @@ const getBenevoles = (request, response) => {
     })}
 
     const connection= (request,response)=>{
-    
+      const { nombenevole,prenom, email,admin,password } = request.body
       var client = new pg.Client(conString);
     client.connect(async function(err) {
       if(err) {
         return console.error('could not connect to postgres', err);
       }
-      const results=`SELECT * FROM benevoles WHERE email = '${request.body.email} AND password='${request.body.password}';`
+      const results=`SELECT * FROM benevoles WHERE email = '${email} AND password='${password}';`
       
       if (error) {
         throw error
