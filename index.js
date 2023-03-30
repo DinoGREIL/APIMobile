@@ -27,7 +27,7 @@ app.get('/', (request, response) => {
   app.get('/benevoles', dbbenevole.getBenevoles)
   app.get('/benevoles/:id', dbbenevole.getBenevoleById)
   app.post('/benevoles', dbbenevole.createBenevole)
-  app.post('/signin',dbbenevole.connection)
+  app.post('/signin',dbbenevole.signin)
   app.put('/benevoles/:id', dbbenevole.updateBenevole)
   app.delete('/benevoles/:id', dbbenevole.deleteBenevole)
 

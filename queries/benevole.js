@@ -16,16 +16,17 @@ const getBenevoles = (request, response) => {
       })
     })}
 
-    const connection= (request,response)=>{
-      const { nombenevole,prenom, email,admin,password } = request.body
+    const signin= (request,response)=>{
+      const {  email,password } = request.body
       var client = new pg.Client(conString);
+      console.log("jkjvkfvdf")
     client.connect(async function(err) {
       if(err) {
         return console.error('could not connect to postgres', err);
       }
-      const results=`SELECT * FROM benevoles WHERE email = '${email} AND password='${password}';`
-      
+      client.query(`SELECT * FROM benevoles WHERE email = $1 AND password = $2;`,[email,password],(error,results)=>{
       if (error) {
+        console.log("ufuhfgiuhjfd",error)
         throw error
       }
       console.log(results.rows)
@@ -34,6 +35,8 @@ const getBenevoles = (request, response) => {
       }
       else{response.status(201).send(results.rows)}
       client.end()
+      })
+      
   
     })
     }
@@ -114,5 +117,5 @@ module.exports={
     createBenevole,
     deleteBenevole,
     updateBenevole,
-    connection
+    signin
 }
