@@ -33,11 +33,13 @@ const getCreneaux = (request, response) => {
   const createCreneau = (request, response) => {
     const { debut,fin,jour } = request.body
     var client = new pg.Client(conString);
+    debutDate=Date.parse(debut)
+    finDate=Date.parse(fin)
     client.connect(function(err) {
       if(err) {
         return console.error('could not connect to postgres', err);
       }
-    client.query('INSERT INTO creneaux (debut, fin,jour) VALUES ($1, $2,$3) RETURNING *', [debut,fin,jour], (error, results) => {
+    client.query('INSERT INTO creneaux (debut, fin,jour) VALUES ($1, $2,$3) RETURNING *', [debutDate/1000,finDate/1000,jour], (error, results) => {
       if (error) {
         throw error
       }
